@@ -2,7 +2,7 @@ CREATE DATABASE rsportal;
 
 USE rsportal;
 CREATE TABLE users(user_id INT(5) AUTO_INCREMENT NOT NULL, 
-username VARCHAR(20) NOT NULL, password VARCHAR(20) NOT NULL, PRIMARY KEY (user_id));
+username VARCHAR(20) NOT NULL, password VARCHAR(40) NOT NULL, PRIMARY KEY (user_id));
 
 
 CREATE TABLE proposals(proposal_id INT(5) AUTO_INCREMENT NOT NULL, user_id INT(5) NOT NULL, 
@@ -22,3 +22,17 @@ CREATE TABLE reviews(review_id INT(5) AUTO_INCREMENT NOT NULL,
 verdict CHAR(1) NOT NULL, comment CHAR(40), file BLOB NOT NULL, user_id INT(5) NOT NULL, proposal_id INT(5)
 NOT NULL, FOREIGN KEY (user_id) REFERENCES users(user_id), FOREIGN KEY (proposal_id) REFERENCES proposals(proposal_id), 
 PRIMARY KEY (review_id)); 
+
+insert into users(username, password) values('adelen', md5('12345'));
+insert into users(username, password) values('elijah', md5('12345'));
+insert into users(username, password) values('josh', md5('12345'));
+insert into users(username, password) values('carmeli', md5('12345'));
+insert into users(username, password) values('noel', md5('12345'));
+insert into users(username, password) values('ray', md5('12345'));
+
+insert into userroles(usertype, user_id) values('P', 1);
+insert into userroles(usertype, user_id) values('P', 2);
+insert into userroles(usertype, user_id) values('P', 3);
+insert into userroles(usertype, user_id) values('P', 4);
+insert into userroles(usertype, user_id) values('P', 5);
+insert into userroles(usertype, user_id) values('P', 6);
