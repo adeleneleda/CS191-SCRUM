@@ -3,8 +3,9 @@
 * XAMPP (May require to be Run as Administrator)
 * MySQL
 * Apache
+* A web browser
 
-### Instructions (Git for noobs):
+### Instructions (Git):
 1. Open cmd/bash and go to desired directory.
 2. Type "git clone https://github.com/apfestin/CS191-SCRUM.git"
 3. Edit/Add stuff
