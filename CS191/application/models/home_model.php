@@ -26,4 +26,99 @@ class Home_Model extends CI_Model {
 		}
 		return "Invalid UP Webmail account.";
 	}
+	
+	function get_approved_proposal_titles() {
+		$results = $this->db->query('SELECT proposal_id, title, status_date FROM proposals WHERE status = "APPROVED";');
+		$results = $results->result_array();
+		return $results;
+	}
+	
+	function get_authors($proposal_id) {
+		$results = $this->db->query('SELECT proposal_id, lastname, firstname, middlename FROM proponent JOIN proposes USING (proponent_id) WHERE proposal_id  = '.$proposal_id.';');
+		$results = $results->result_array();
+		return $results;
+	
+	}
+	
+	function get_years() {
+		$results = $this->db->query('SELECT DISTINCT extract(year from status_date) as year from proposals where status = "APPROVED";');
+		$results = $results->result_array();
+		return $results;	
+	}
+	
+	function proponent_search($proponent) {
+	
+	$query_long = "SELECT proponent_id, lastname, firstname, middlename from proponent p1
+	where (concat_ws(' ', firstname, middlename, lastname) like '%".$proponent."%' OR
+	concat_ws(' ', middlename, firstname, lastname) like '%".$proponent."%' OR
+	concat_ws(' ', lastname, middlename, firstname) like '%".$proponent."%' OR
+	concat_ws(' ', middlename, lastname, firstname) like '%".$proponent."%' OR
+	concat_ws(' ', firstname, lastname, middlename) like '%".$proponent."%' OR
+	concat_ws(' ', lastname, firstname, middlename) like '%".$proponent."%' )
+	AND EXISTS (select proposal_id from proposes p2 join proposals using (proposal_id) where p1.proponent_id = p2.proponent_id and status = 'APPROVED');";
+	
+	
+	$results = $this->db->query($query_long);
+	$results = $results->result_array();
+	return $results;
+
+
+	
+	
+	}
+	
+	function search_all($proponent, $year, $keyword) {
+	
+
+	
+	
+	$query_long = "SELECT proposal_id, title, status_date from proposals join proposes using (proposal_id) join proponent using (proponent_id) where
+	proponent_id in 
+	(SELECT proponent_id from proponent p1
+	where (concat_ws(' ', firstname, middlename, lastname) like '%".$proponent."%' OR
+	concat_ws(' ', middlename, firstname, lastname) like '%".$proponent."%' OR
+	concat_ws(' ', lastname, middlename, firstname) like '%".$proponent."%' OR
+	concat_ws(' ', middlename, lastname, firstname) like '%".$proponent."%' OR
+	concat_ws(' ', firstname, lastname, middlename) like '%".$proponent."%' OR
+	concat_ws(' ', lastname, firstname, middlename) like '$".$proponent."%' )
+	AND EXISTS (select proposal_id from proposes p2 join proposals using (proposal_id) where p1.proponent_id = p2.proponent_id and status = 'APPROVED')
+	)
+	
+	AND 
+	
+	extract(year from status_date) like '%".$year."%'
+	
+	AND
+	
+	(title like '%".$keyword."%' OR abstract like '%".$keyword."%');";
+	
+	
+	$results = $this->db->query($query_long);
+	$results = $results->result_array();
+	return $results;	
+	
+	
+	}
+	
+	function search_proponent($proponent_id, $year, $keyword) {
+	
+
+	
+	
+	$query_long = "SELECT proposal_id, title, status_date from proposals join proposes using (proposal_id) join proponent using (proponent_id) where
+	proponent_id = ".$proponent_id."	AND 
+	
+	extract(year from status_date) like '%".$year."%'
+	
+	AND
+	
+	(title like '%".$keyword."%' OR abstract like '%".$keyword."%');";
+	
+	
+	$results = $this->db->query($query_long);
+	$results = $results->result_array();
+	return $results;	
+	
+	
+	}
 }

@@ -183,23 +183,8 @@
 	
 
 <br/>												
-<?foreach ($proposal as $indiv_proposal) { ?>
-
-
-	<font face="helvetica" style="font-size:25px;"><a style='color: #D97511; text-decoration : underline; font-family: Lucida Sans Unicode", "Lucida Grande", Sans-Serif;' href = "<?//= site_url('groups/edit_group')."/".$indiv_groups['groupid']?>"><?=$indiv_proposal['title']?></a></font><br/>
-
-	<font face = "verdana" style="color: #597F0B; font-size:15px;">(<?=$indiv_proposal['status_date']?>)</font><br/>
-	
-	<?foreach ($indiv_proposal['author'] as $indiv_author) { ?>
-	<br/>
-		<font face = "verdana" style="font-size:12px;"><?=$indiv_author?></font><br/>
-	<? } ?>
-
-
-<hr size=2 noshade>
-
-
-
+<?foreach ($proponent as $indiv) { ?>
+	<font face="helvetica" style="font-size:25px;"><a style='color: #D97511; text-decoration : underline; font-family: Lucida Sans Unicode", "Lucida Grande", Sans-Serif;' href = "<?= site_url('home/prop_helper')."/".$indiv['proponent_id']?>"><?=$indiv['lastname']?>, <?=$indiv['firstname']?> <?=$indiv['middlename']?></a></font><br/>
 <?}?>
 												
 												
