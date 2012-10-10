@@ -1,6 +1,7 @@
 CREATE DATABASE rsportal;
 
 USE rsportal;
+
 CREATE TABLE users(user_id INT(5) AUTO_INCREMENT NOT NULL, 
 username VARCHAR(20) NOT NULL, password VARCHAR(20) NOT NULL, PRIMARY KEY (user_id));
 
