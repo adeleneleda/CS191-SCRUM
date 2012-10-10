@@ -77,12 +77,3 @@ insert into proposes(proposal_id, proponent_id) values(6,6);
  update proposals set status = 'APPROVED' where proposal_id in (1,3,5);
  insert into proposes(proposal_id, proponent_id) values(1,4);
  
-
-
-
---make trigger for approve
--- make trigger to change date
-
---mysql> select proposal_id, title, status_date from proposals where status = 'APPROVED';
-
---select proposal, lastname from proposals join proposes using (proposal_id) join proponent using (proponent_id) where status = 'APPROVED';
