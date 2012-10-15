@@ -5,7 +5,7 @@
 		Created by Artisteer v3.1.0.48375
 		Base template (without user's data) checked by http://validator.w3.org : "This page is valid XHTML 1.0 Transitional"
 		-->
-		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+		<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
 		<title>UP DCS Research Submission Portal</title>
 		<link rel="stylesheet" href="<?= base_url() ?>stylesheets/style.css" type="text/css" media="screen" />
 		<!--[if IE 6]><link rel="stylesheet" href="style.ie6.css" type="text/css" media="screen" /><![endif]-->
@@ -34,61 +34,18 @@
 			<div class="cleared reset-box"></div>
 			<div class="art-box art-sheet">
 				<div class="art-box-body art-sheet-body">
-						<div class="art-header">
-							<div>
-							<table>
-								<tr>
-								<td>
-								<img src="<?= base_url() ?>images/banner.png" width="300px" height="180" style="vertical-align:top; margin-left:35px; margin-top:40px;"/>
-								</td>
-								<td>
-								<h1 class="art-logo-name" style="margin-left:30px; margin-top:50px"><a href="#">DCS Research Submission Portal</a></h1>
-								<h2 class="art-logo-text" style="margin-left:280px">UP Diliman</h2>
-								</td>
-								</tr>
-							</table>		
-							</div>		
-						</div>
-						<div class="art-bar art-nav">
+					<div class="art-bar art-nav">
 							<div class="art-nav-outer">
 								<ul class="art-hmenu">
 									<li>
-										<a href="#" class="active">Home</a>
-									</li>	
-									<li>
-										<a href="#">Search a Proposal</a>
+										<a href="<?base_url()?>userhome" class="active">Home</a>
 									</li>
 									<li>
 										<a href="#">Write a Proposal</a>
-										<ul>
-											<li>
-												<a href="#">Menu Subitem 1</a>
-										<ul>
-											<li>
-												<a href="#">Menu Subitem 1.1</a>
-
-											</li>
-											<li>
-												<a href="#">Menu Subitem 1.2</a>
-
-											</li>
-											<li>
-												<a href="#">Menu Subitem 1.3</a>
-
-											</li>
-										</ul>
-
-											</li>
-											<li>
-												<a href="#">Menu Subitem 2</a>
-
-											</li>
-											<li>
-												<a href="#">Menu Subitem 3</a>
-
-											</li>
-										</ul>
 									</li>	
+									<li>
+										<a href="<?base_url()?>review">Submit Review</a>
+									</li>
 									<li>
 										<a href="#">About</a>
 									</li>	
@@ -98,6 +55,21 @@
 								</ul>
 							</div>
 						</div>
+						<div class="art-header">
+							<div>
+							<table>
+								<tr>
+								<td>
+								<img src="<?= base_url() ?>images/banner.png" width="300px" height="180" style="vertical-align:top; margin-left:35px; margin-top:40px;"/>
+								</td>
+								<td>
+								<h1 class="art-logo-name" style="margin-left:30px; margin-top:50px"><a href="<?= base_url()?>userhome">DCS Research Submission Portal</a></h1>
+								<h2 class="art-logo-text" style="margin-left:280px">UP Diliman</h2>
+								</td>
+								</tr>
+							</table>		
+							</div>		
+						</div>
 						<div class="cleared reset-box"></div>
 						<div class="art-layout-wrapper">
 							<div class="art-content-layout">
@@ -105,4 +77,4 @@
 									<div class="art-layout-cell art-content">
 										<div class="art-box art-post">
 											<div class="art-box-body art-post-body">
-												<div class="cleared"></div>
+												<div class="art-post-inner art-article">

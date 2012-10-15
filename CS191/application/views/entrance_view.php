@@ -53,6 +53,7 @@
 			<div class="cleared reset-box"></div>
 			<div class="art-box art-sheet">
 				<div class="art-box-body art-sheet-body">
+					<div class="art-bar art-nav"></div>
 						<div class="art-header">
 							<div>
 								<table width="100%">
@@ -89,7 +90,6 @@
 								</table>
 							</div>		
 						</div>
-						<div class="art-bar art-nav"></div>
 						<div class="cleared reset-box"></div>
 						<div class="art-layout-wrapper">
 							<div class="art-content-layout">
@@ -167,21 +167,6 @@
 		</table>
 	</form>
 </div>
-
-
-
-
-
-
-
-
-
-
-
-
-
-	
-
 <br/>												
 <?foreach ($proposal as $indiv_proposal) { ?>
 
@@ -197,34 +182,29 @@
 
 
 <hr size=2 noshade>
-
-
-
-<?}?>
-												
-												
-												
-												
-												
-												
-												
-												
-												
-												
-												
-												
-												
-												
-												
+<?}?>				
 											</div>
-										</div> 
+											</div>
+										</div>
 									</div>
 								</div>
-							</div>
-						</div>
+								<div class="cleared"></div>
+								<div class="art-footer">
+									<div class="art-footer-body">
+										<div class="art-footer-text">
+											<p>UP Diliman - Department of Computer Science</p>
+											<p>Copyright © 2012. All Rights Reserved.</p>
+										</div>
+										<div class="cleared"></div>
+									</div>
+								</div>
+							<div class="cleared"></div>
 					</div>
 				</div>
 			</div>
+			<div class="cleared"></div>
+				<p class="art-page-footer"></p>
+			<div class="cleared"></div>
 		</div>
 	</body>
 </html>
