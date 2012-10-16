@@ -16,6 +16,7 @@ class Home extends CI_Controller {
 		
 			$proposal[$index]['title'] = $approved['title'];
 			$proposal[$index]['status_date'] = $approved['status_date'];
+			$proposal[$index]['proposal_id'] = $approved['proposal_id'];
 			
 			$authors = $this->Model->get_authors($approved['proposal_id']);
 			
@@ -81,6 +82,7 @@ class Home extends CI_Controller {
 			
 				$proposal[$index]['title'] = $approved['title'];
 				$proposal[$index]['status_date'] = $approved['status_date'];
+				$proposal[$index]['proposal_id'] = $approved['proposal_id'];
 				
 				$authors = $this->Model->get_authors($approved['proposal_id']);
 				
@@ -110,6 +112,7 @@ class Home extends CI_Controller {
 			
 				$proposal[$index]['title'] = $approved['title'];
 				$proposal[$index]['status_date'] = $approved['status_date'];
+				$proposal[$index]['proposal_id'] = $approved['proposal_id'];
 				
 				$authors = $this->Model->get_authors($approved['proposal_id']);
 				
@@ -122,6 +125,19 @@ class Home extends CI_Controller {
 	
 	
 	}
+	
+	public function view_prop_info($proposal_id) {
+			
+		$abstract_info = $this->Model->get_info($proposal_id);
+		$authors = $this->Model->get_authors($proposal_id);
+		
+
+		$this->load->view('propdetails_view', compact('authors', 'abstract_info'));
+	
+	
+	}
+	
+
 	
 	
 	

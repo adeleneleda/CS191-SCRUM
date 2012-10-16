@@ -47,7 +47,7 @@
 										<a href="<?base_url()?>review">Submit Review</a>
 									</li>
 									<li>
-										<a href="#">About</a>
+										<a href="">About</a>
 									</li>	
 									<li>
 										<a href="<?base_url()?>userhome/logout">Logout</a>

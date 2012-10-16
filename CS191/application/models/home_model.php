@@ -28,7 +28,7 @@ class Home_Model extends CI_Model {
 	}
 	
 	function get_approved_proposal_titles() {
-		$results = $this->db->query('SELECT proposal_id, title, status_date FROM proposals WHERE status = "APPROVED";');
+		$results = $this->db->query('SELECT proposal_id, title, date(status_date) as status_date FROM proposals WHERE status = "APPROVED";');
 		$results = $results->result_array();
 		return $results;
 	}
@@ -121,4 +121,15 @@ class Home_Model extends CI_Model {
 	
 	
 	}
+	
+	function get_info($proposal_id) {
+	$query_long = "SELECT title, abstract, date(status_date) as status_date from proposals where proposal_id = ".$proposal_id.";";
+	$results = $this->db->query($query_long);
+	$results = $results->result_array();
+	return $results;	
+	
+	
+	}
+	
+	
 }

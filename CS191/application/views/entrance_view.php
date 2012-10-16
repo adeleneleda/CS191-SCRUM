@@ -105,6 +105,8 @@
 <br/>
 
 
+
+
 <? if (isset($search)) {?>
 
 
@@ -140,12 +142,12 @@
 		<table >
 			<tr>
 			<td>Title / Topic</td>
-			<td><input style = "width: 250px; height: 10px; padding: 5px;" name = "keyword" type = "text"></input></td>
+			<td><input style = "width: 250px; height: 20px; padding: 5px;" name = "keyword" type = "text"></input></td>
 			</tr>
 			
 			<tr>
 			<td>Proponent</td>
-			<td><input style = "width: 250px; height: 10px; padding: 5px;" name = "proponent" type = "text"></input></td>
+			<td><input style = "width: 250px; height: 20px; padding: 5px;" name = "proponent" type = "text"></input></td>
 			</tr>
 			
 			<tr>
@@ -171,14 +173,38 @@
 <?foreach ($proposal as $indiv_proposal) { ?>
 
 
-	<font face="helvetica" style="font-size:25px;"><a style='color: #D97511; text-decoration : underline; font-family: Lucida Sans Unicode", "Lucida Grande", Sans-Serif;' href = "<?//= site_url('groups/edit_group')."/".$indiv_groups['groupid']?>"><?=$indiv_proposal['title']?></a></font><br/>
-
-	<font face = "verdana" style="color: #597F0B; font-size:15px;">(<?=$indiv_proposal['status_date']?>)</font><br/>
 	
-	<?foreach ($indiv_proposal['author'] as $indiv_author) { ?>
+	<font face="helvetica" style="font-size:25px;"><a style='color: #D97511; text-decoration : underline; font-family: Lucida Sans Unicode", "Lucida Grande", Sans-Serif;' href = "<?= site_url('home/view_prop_info'."/".$indiv_proposal['proposal_id'])?>"><?=$indiv_proposal['title']?></a></font><br/>
 	<br/>
-		<font face = "verdana" style="font-size:12px;"><?=$indiv_author?></font><br/>
-	<? } ?>
+	 <div>
+				<span class="art-postdateicon"><?=$indiv_proposal['status_date']?></span> <span class="art-postauthoricon">Author:
+				
+					
+					<?$parts = array();
+					foreach ($indiv_proposal['author'] as $indiv_author) { 
+						$parts[] = $indiv_author;
+					}
+					
+					$outstring  = implode(", ", $parts);
+					
+					
+					?>
+		<font face = "verdana" style="font-size:12px;"><?=$outstring?></font>
+
+				
+				</span>
+            </div>
+			
+			
+
+		
+	<div>
+	
+	</div>
+	
+
+	
+
 
 
 <hr size=2 noshade>

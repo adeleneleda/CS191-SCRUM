@@ -99,103 +99,48 @@
 											<div class="art-box-body art-post-body">
 												<div class="cleared"></div>
 												
-												<h1>View Proposals</h1>
+												
 												
 	
 <br/>
 
 
-<? if (isset($search)) {?>
 
 
-<font face="helvetica" style="font-size:15px;"><a style='color: #597F0B; text-decoration : underline; font-family: Lucida Sans Unicode", "Lucida Grande", Sans-Serif;' href="javascript:backna()">Back to all approved proposals.</a></font>
+
+<font face="helvetica" style="font-size:12px;"><a style='color: #597F0B; text-decoration : underline; font-family: Lucida Sans Unicode", "Lucida Grande", Sans-Serif;' href="javascript:backna()">Back to all Proposals page.</a></font>
 <br/><br/>
-<?}?>
 
-<font face="helvetica" style="font-size:15px;"><a style='color: #597F0B; text-decoration : underline; font-family: Lucida Sans Unicode", "Lucida Grande", Sans-Serif;' href="javascript:toggleshowhide()">SEARCH PROPOSALS</a></font>
+<h1><?=$abstract_info[0]['title']?></h1>
 <br/>
+	 <div>
+				<span class="art-postdateicon"><?=$abstract_info[0]['status_date']?></span> <span class="art-postauthoricon">Author:
+				
+					
+					<?$parts = array();
+					foreach ($authors as $indiv_author) { 
+						$parts[] = $indiv_author['lastname'].",".$indiv_author['firstname']." ".$indiv_author['middlename'];
+					}
+					
+					$outstring  = implode(", ", $parts);
+					
+					
+					?>
+		<font face = "verdana" style="font-size:12px;"><?=$outstring?></font>
 
-<? if (isset($search)) {?>
-<?if (!empty($a)) { ?>
-	<br/>
-	<font face="helvetica" style="font-size:12px;"><a style='color: #597F0B;  font-family: Lucida Sans Unicode", "Lucida Grande", Sans-Serif;'>Searched Proponent: <?=$a?> </a></font>
-<?}?>
-<?if (!empty($b)) { ?>
-	<br/>
-	<font face="helvetica" style="font-size:12px;"><a style='color: #597F0B; font-family: Lucida Sans Unicode", "Lucida Grande", Sans-Serif;'>Searched Year: <?= $b?> </a></font>
-<?}?>
-<?if (!empty($c)) { ?>
-	<br/>
-	<font face="helvetica" style="font-size:12px;"><a style='color: #597F0B;font-family: Lucida Sans Unicode", "Lucida Grande", Sans-Serif;'>Searched Keyword: <?=$c?> </a></font>
-<?}?>
-<?}?>
-
-<br/>
-<br/>
-
-<div id = "aaaa" style="display:none;">
-	You can search all the approved proposals by title or topic and/or proponents and/or by year of approval.<br/>
-	You can leave other fields blank if you wish to only search by a certain category.<br/><br/>
-	<form action="<?=site_url()?>home/prop_search" method = "post">
-		<table >
-			<tr>
-			<td>Title / Topic</td>
-			<td><input style = "width: 250px; height: 10px; padding: 5px;" name = "keyword" type = "text"></input></td>
-			</tr>
+				
+				</span>
+            </div>
 			
-			<tr>
-			<td>Proponent</td>
-			<td><input style = "width: 250px; height: 10px; padding: 5px;" name = "proponent" type = "text"></input></td>
-			</tr>
+		
+		
+		<br/>
+		
+		<font face = "verdana" style="font-size:14px;">ABSTRACT:</font> <br/>		
+		<font face = "verdana" style="font-size:12px;"><?=$abstract_info[0]['abstract']?></font><br/>
 			
-			<tr>
-			<td>Year</td>
-				<td>
-					<select name="year">	
-						<option value="">Choose a Year</option>
-					<? foreach($years as $y): ?>
-						<option value="<?= $y['year'] ?>"> <?= $y['year']  ?></option>
-					<? endforeach; ?>
-					</select>
-				</td>
-			</tr>
-
-			<tr></tr>
-			<tr>
-			<td colspan = "2"><input style="margin: 5px 1px;" type="submit" value = "Search for Proposals"></input></td>
-			</tr>
-		</table>
-	</form>
-</div>
-
-
-
-
-
-
-
-
-
-
-
-
-
-	
-
-<br/>												
-<?foreach ($proponent as $indiv) { ?>
-	<font face="helvetica" style="font-size:25px;"><a style='color: #D97511; text-decoration : underline; font-family: Lucida Sans Unicode", "Lucida Grande", Sans-Serif;' href = "<?= site_url('home/prop_helper')."/".$indiv['proponent_id']?>"><?=$indiv['lastname']?>, <?=$indiv['firstname']?> <?=$indiv['middlename']?></a></font><br/>
-<?}?>
-												
-												
-												
-												
-												
-												
-												
-												
-												
-												
+			
+							
 												
 												
 	</div>
