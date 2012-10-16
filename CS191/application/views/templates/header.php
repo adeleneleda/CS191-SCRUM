@@ -41,7 +41,7 @@
 										<a href="<?base_url()?>userhome" class="active">Home</a>
 									</li>
 									<li>
-										<a href="#">Write a Proposal</a>
+										<a href="<?base_url()?>userhome/writeproposal">Write a Proposal</a>
 									</li>	
 									<li>
 										<a href="<?base_url()?>review">Submit Review</a>
@@ -49,7 +49,7 @@
 									<li>
 										<a href="">About</a>
 									</li>	
-									<li>
+									<li				
 										<a href="<?base_url()?>userhome/logout">Logout</a>
 									</li>
 								</ul>

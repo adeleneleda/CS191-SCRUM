@@ -37,9 +37,29 @@ class UserHome extends CI_Controller {
 		$authors = $this->Model->get_authors($proposal_id);
 		
 
-		$this->load_view('propdetails_loggedin_view', compact('authors', 'abstract_info'));
+		$this->load_view('propdetails_loggedin_view', compact('proposal_id', 'authors', 'abstract_info'));
 	
 	
+	}
+	
+	
+	public function writeproposal()
+    {
+        redirect('writeproposal', 'refresh');
+    }
+	
+	public function download($proposal_id) {
+		$file = $this->Model->download_file($proposal_id);
+		$type = $file['filetype'];
+		$size = $file['filesize'];
+		$name = $file['filename'];
+		$data = $file['file'];
+		header("Content-type:". $type);
+		header("Content-length:". filesize($data));
+		header("Content-Disposition: attachment; filename=".$name);
+		#header("Content-transfer-encoding: binary");
+		echo stripslashes($data);
+		exit;
 	}
 	
 

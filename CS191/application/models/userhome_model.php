@@ -53,6 +53,18 @@ class Userhome_Model extends CI_Model {
 	}
 	
 	
+	function download_file($proposal_id) {
+		$results = $this->db->query('SELECT filename, filesize, filetype, proposal as file FROM proposals where proposal_id='.$proposal_id.';');
+		
+		if($results->num_rows() > 0)
+		{
+			$temp = $results->result_array();
+			return $temp[0];
+		}
+		return false;
+	}
+	
+	
 	
 	
 }
