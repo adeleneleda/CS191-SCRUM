@@ -47,7 +47,7 @@ function backna() {
 		<br/>
 		
 		<a href="<?= base_url()?>userhome/download/<?=$proposal_id?>">Download file.</a>
-		
+		<br/>
 		<br/>
 		<font face = "verdana" style="font-size:14px;">ABSTRACT:</font> <br/>		
 		<font face = "verdana" style="font-size:12px;"><?=$abstract_info[0]['abstract']?></font><br/>
