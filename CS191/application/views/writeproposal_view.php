@@ -65,31 +65,52 @@
         }
     }
 ?>
-Proponents:
 <br />
 <br />
 <?php
 $ctr = 0;
+$v = 0;
 if(!empty($the_list)){
     while($ctr < count($the_list))
     {       
         if($ctr == 0)
         {
-            echo $name_value[$ctr] . "  (main)";
+            echo "Main proponent: " . $name_value[$ctr];
+            echo "<br />";
+            echo "<br />";
         }
         else
         {
+            if($v == 0)
+            {
+                echo "Co - Proponents: ";
+                echo "<br />";
+                echo "<br />";
+                $v = 1;
+            }
             echo $name_value[$ctr];
         ?>
 		<a href="<?=site_url('writeproposal/remove_proponent' . "/" . $the_list[$ctr])?>">x</a>
         <?php
+            echo "<br />";
+            echo "<br />";
         }
-        echo "<br />";
-        echo "<br />";
         $ctr++;
     }
 }
 ?>
+
+<?php
+    if(empty($addcop))
+    {
+?>
+        <a href="<?=site_url('writeproposal/add_coproponent')?>">Add Co-porponents</a>
+   
+   <?php
+   }
+   else{
+   
+   ?>
 
 
 <form action="<?=base_url()?>writeproposal/add_proponent" method="post">
@@ -142,10 +163,8 @@ while($row = mysql_fetch_array($nameresult))
 }
 $ctr = 0;
 ?>
-<br />
-<br /> 
     <?php if(!empty($name_values)){
-        echo "Proponent's Name:";
+        echo "Co - Proponent's Name:";
     ?>
                 <select name="proponent">;
                 <?php
@@ -157,23 +176,24 @@ $ctr = 0;
                 </select>
                 <br />
                 <br />
-                <input type="submit" value="Add a Proponent"/>
+                <input type="submit" value="Add a Co - Proponent"/>
                 </form>
                 <?php
                 }
     else{
-    echo "Proponent list is empty.";
+    echo "Co - Proponent list is empty.";
     ?>
             <br />
             <br />
-            <input type="submit" disabled="disabled" value="Add a Proponent"/>
+            <input type="submit" disabled="disabled" value="Add a Co - Proponent"/>
             </form>
     <?php
     }
     ?>
     
-<br />
-<br />
+    <?php
+    }
+    ?>
 
 <form action="<?=base_url()?>writeproposal/submit" method="post" enctype="multipart/form-data">
 <?php

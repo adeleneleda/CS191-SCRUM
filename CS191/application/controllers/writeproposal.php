@@ -8,9 +8,17 @@ class WriteProposal extends CI_Controller {
 		$this->load->model('WriteProposal_Model', 'Model');
 	}
     
+    public function add_coproponent()
+    {
+        $addcop = 1;
+        $the_list = $this->session->userdata('proponent_list');
+        $this->load_view('writeproposal_view', compact('addcop', 'the_list'));
+    }
+    
     public function remove_proponent($remove)
     {
         $ctr = 0;
+        $addcop = 1;
         $newlist = array();
 		$userdata = $this->session->userdata('proponent_list');
         while($ctr < count($this->session->userdata('proponent_list')))
@@ -23,7 +31,7 @@ class WriteProposal extends CI_Controller {
         }
         $this->session->set_userdata('proponent_list', $newlist);
         $the_list = $this->session->userdata('proponent_list');
-        $this->load_view('writeproposal_view', compact('the_list'));
+        $this->load_view('writeproposal_view', compact('the_list', 'addcop'));
     }
     
 	
@@ -32,6 +40,7 @@ class WriteProposal extends CI_Controller {
         $temp_proponent_list = array();
         $proponent = $this->input->post('proponent');
         $ctr = 0;
+        $addcop = 1;
         $valid = 0;
         while($ctr < count($this->session->userdata('proponent_list')))
         {
@@ -49,11 +58,12 @@ class WriteProposal extends CI_Controller {
             $this->session->set_userdata('proponent_list', $temp_proponent_list);
         }
         $the_list = $this->session->userdata('proponent_list');
-        $this->load_view('writeproposal_view', compact('the_list'));
+        $this->load_view('writeproposal_view', compact('the_list', 'addcop'));
     }
 
     public function submit() {
         $emptyfields = "*Fields cannot be empty";
+        $addcop = 1;
         $title = $this->input->post('title');
         $abstract = $this->input->post('abstract');
         $funding = $this->input->post('funding');
@@ -80,12 +90,12 @@ class WriteProposal extends CI_Controller {
         $the_list = $this->session->userdata('proponent_list');
         if(empty($title) or empty($abstract) or empty($funding) or empty($proposal) or empty($start) or empty($end))
         {
-            $this->load_view('writeproposal_view', compact('emptyfields', 'the_list'));
+            $this->load_view('writeproposal_view', compact('emptyfields', 'the_list', 'addcop'));
         }
         else if($end <= $start)
         {
             $date_error = "End date Should be later than start date!";
-            $this->load_view('writeproposal_view', compact('date_error', 'the_list'));
+            $this->load_view('writeproposal_view', compact('date_error', 'the_list', 'addcop'));
         }
         else
         {
