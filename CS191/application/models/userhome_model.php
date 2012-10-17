@@ -7,9 +7,17 @@ class Userhome_Model extends CI_Model {
         parent::__construct();
     }
     
-	function get_own_proposals($status) {
+	function get_all_pending_proposals() {
+		$results = $this->db->query('SELECT proposal_id, title, date(status_date) as status_date, lastname, middlename, firstname, abstract FROM proposals JOIN proposes USING(proposal_id) 
+									JOIN proponent USING(proponent_id) JOIN users USING(user_id)
+									WHERE status = "PENDING" and user_id !=' .$this->session->userdata('userid'). ';');
+		$results = $results->result_array();
+		return $results;
+	}
 	
-		$id = 'SELECT proponent_id FROM users join proponent using (user_id) WHERE username="' . $this->session->userdata('userdata')['login'].'" AND password="'.substr(md5($this->session->userdata('userdata')['password']),0,20).'";';
+	function get_own_proposals($status) {
+		$userdata = $this->session->userdata('userdata');
+		$id = 'SELECT proponent_id FROM users join proponent using (user_id) WHERE username="' . $userdata['login'].'" AND password="'.substr(md5($userdata['password']),0,20).'";';
 		$results = $this->db->query($id);
 		$results = $results->result_array();
 		$id = $results[0]['proponent_id'];
@@ -20,8 +28,8 @@ class Userhome_Model extends CI_Model {
 	}
 	
 	function get_prop_id() {
-	
-		$id = 'SELECT proponent_id FROM users join proponent using (user_id) WHERE username="' . $this->session->userdata('userdata')['login'].'" AND password="'.substr(md5($this->session->userdata('userdata')['password']),0,20).'";';
+		$userdata = $this->session->userdata('userdata');
+		$id = 'SELECT proponent_id FROM users join proponent using (user_id) WHERE username="' . $userdata['login'].'" AND password="'.substr(md5($userdata['password']),0,20).'";';
 		$results = $this->db->query($id);
 		$results = $results->result_array();
 		return $results;
@@ -36,7 +44,7 @@ class Userhome_Model extends CI_Model {
 	}
 	
 	function get_info($proposal_id) {
-	$query_long = "SELECT title, abstract, date(status_date) as status_date from proposals where proposal_id = ".$proposal_id.";";
+	$query_long = "SELECT title, abstract, date(status_date) as status_date, fundingreq, startdate, enddate from proposals where proposal_id = ".$proposal_id.";";
 	$results = $this->db->query($query_long);
 	$results = $results->result_array();
 	return $results;	

@@ -6,11 +6,12 @@ class Review extends CI_Controller {
 		$this->load->model('Review_Model', 'Model');
 	}
 	
-	public function index() {
-		$this->load_view('review_view');
+	public function index($proposalid) {
+		$proposal_details = $this->Model->get_proposal_details($proposalid);
+		$this->load_view('review_view', compact('proposalid', 'proposal_details'));
 	}
 	
-	public function submit() {
+	public function submit($proposalid) {
 		if($_FILES['userfile']['size'] > 0)
 		{
 			$fileName = $_FILES['userfile']['name'];
@@ -31,17 +32,13 @@ class Review extends CI_Controller {
 		$review['verdict'] = $this->input->post('verdict');
 		$review['comment'] = $this->input->post('comment');
 		$review['file'] = $content;
-		#echo $content;
-		#die();
 		$review['filesize'] = $fileSize;
 		$review['filename'] = $fileName;
 		$review['filetype'] = $fileType;
 		$review['user_id'] = $this->session->userdata('userid');
-		$review['proposal_id'] = 1;
+		$review['proposal_id'] = $proposalid;
 		
 		$this->Model->add_review($review);
-		#echo $content;
-		#die();
 		
 		redirect('review_download');
 		}

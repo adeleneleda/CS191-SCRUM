@@ -15,8 +15,15 @@ class UserHome extends CI_Controller {
 		$proposals_approved = $this->Model->get_own_proposals('APPROVED');		
 		$proposals_pending = $this->Model->get_own_proposals('PENDING');
 		$proposals_disapproved = $this->Model->get_own_proposals('DISAPPROVED');
+		$review_proposals = $this->Model->get_all_pending_proposals();
 
-		$this->load_view('home_view', compact('proposals_approved', 'proposals_pending', 'proposals_disapproved'));
+		$this->load_view('home_view', compact('proposals_approved', 'proposals_pending', 'proposals_disapproved', 'review_proposals'));
+	}
+	
+	public function changerole($role) {
+		$this->session->set_userdata('activerole', $role);
+		
+		redirect('userhome','refresh');
 	}
 	
 	public function logout() {

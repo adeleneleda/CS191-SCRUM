@@ -179,7 +179,7 @@
 	 <div>
 				<span class="art-postdateicon"><?=$indiv_proposal['status_date']?></span> <span class="art-postauthoricon">Author:
 				
-					
+				
 					<?$parts = array();
 					foreach ($indiv_proposal['author'] as $indiv_author) { 
 						$parts[] = $indiv_author;

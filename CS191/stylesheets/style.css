@@ -1595,6 +1595,10 @@ pre
 /* end PostIcons, PostHeaderIcons */
 
 /* begin PostIcon, PostDateIcon */
+
+
+
+
 span.art-postdateicon
 {
    background:url('../images/postdateicon.png') no-repeat left 0.5em;
@@ -1613,6 +1617,38 @@ span.art-postdateicon:after
    visibility: hidden;
    display: inline-block;
 }/* end PostIcon, PostDateIcon */
+
+
+
+
+
+
+
+span.art-fundreqicon
+{
+   background:url('../images/coins.png') no-repeat left 0.5em;
+   padding-top:7px;
+   margin-top:-7px;
+   padding-left:19px;
+   min-height:15px;
+   display:inline-block;
+   line-height: 1em;
+}
+
+span.art-fundreqicon:after
+{
+   content: '.';
+   width: 1px;
+   visibility: hidden;
+   display: inline-block;
+}/* end PostIcon, PostDateIcon */
+
+
+
+
+
+
+
 
 /* begin PostIcon, PostAuthorIcon */
 span.art-postauthoricon
@@ -2011,7 +2047,7 @@ div.art-footer img
 /* begin LayoutCell, sidebar1 */
 .art-content-layout .art-sidebar1
 {
-   width: 285px;
+   width: 300px;
 }
 /* end LayoutCell, sidebar1 */
 

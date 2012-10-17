@@ -1,48 +1,8 @@
-<meta charset="utf-8" />
-		<title>jQuery UI Datepicker - Format date</title>
-		<link rel="stylesheet" href="http://code.jquery.com/ui/1.9.0/themes/base/jquery-ui.css" />
-		<script src="http://code.jquery.com/jquery-1.8.2.js"></script>
-		<script src="http://code.jquery.com/ui/1.9.0/jquery-ui.js"></script>
-		<link rel="stylesheet" href="/resources/demos/style.css" />
-		<script>
-		$(function() {
-			$( "#startdate" ).datepicker();
-		$( "#startdate" ).datepicker( "option", "dateFormat", "yy-mm-dd" );
-		});
-		</script>
-		<style>
-		.ui-datepicker
-		{
-			font-size:62.5%;
-		}
-		</style>
-
-			<meta charset="utf-8" />
-		<title>jQuery UI Datepicker - Format date</title>
-		<link rel="stylesheet" href="http://code.jquery.com/ui/1.9.0/themes/base/jquery-ui.css" />
-		<script src="http://code.jquery.com/jquery-1.8.2.js"></script>
-		<script src="http://code.jquery.com/ui/1.9.0/jquery-ui.js"></script>
-		<link rel="stylesheet" href="/resources/demos/style.css" />
-		<script>
-		$(function() {
-			$( "#enddate" ).datepicker();
-		$( "#enddate" ).datepicker( "option", "dateFormat", "yy-mm-dd" );
-		});
-		</script>
-		<style>
-		.ui-datepicker
-		{
-			font-size:62.5%;
-		}
-
-		</style>
-		
-		
 <h1>Write a Proposal</h1>
 <?php
     $db_host = "localhost";
     $db_username = "root";
-    $db_pass = "12345";
+    $db_pass = "";
     $db_name = "rsportal";
 
     $con = mysql_connect ("$db_host", "$db_username", "$db_pass") or die ("Unable to connect to MySQL");
@@ -67,7 +27,6 @@
 ?>
 Proponents:
 <br />
-<br />
 <?php
 $ctr = 0;
 if(!empty($the_list)){
@@ -75,7 +34,7 @@ if(!empty($the_list)){
     {       
         if($ctr == 0)
         {
-            echo $name_value[$ctr] . "  (main)";
+            echo $name_value[$ctr];
         }
         else
         {
@@ -96,7 +55,7 @@ if(!empty($the_list)){
 <?php
 $db_host = "localhost";
 $db_username = "root";
-$db_pass = "12345";
+$db_pass = "";
 $db_name = "rsportal";
 
 $con = mysql_connect ("$db_host", "$db_username", "$db_pass") or die ("Unable to connect to MySQL");
@@ -142,36 +101,19 @@ while($row = mysql_fetch_array($nameresult))
 }
 $ctr = 0;
 ?>
-<br />
-<br /> 
-    <?php if(!empty($name_values)){
-        echo "Proponent's Name:";
-    ?>
-                <select name="proponent">;
-                <?php
+
+Proponent's Name: <select name="proponent">
+                        <?php
                             while ($name_values[$ctr] != null){
                                 echo '<option value=' . $id_values[$ctr] . '>' . $name_values[$ctr] . '</option>';
                                 $ctr++;
                               }
-                ?>
+                        ?>
                 </select>
-                <br />
-                <br />
-                <input type="submit" value="Add a Proponent"/>
-                </form>
-                <?php
-                }
-    else{
-    echo "Proponent list is empty.";
-    ?>
-            <br />
-            <br />
-            <input type="submit" disabled="disabled" value="Add a Proponent"/>
-            </form>
-    <?php
-    }
-    ?>
-    
+<br />
+<br />
+<input type="submit" value="Add a Proponent"/>
+</form>
 <br />
 <br />
 
@@ -182,41 +124,72 @@ if(!empty($emptyfields))
 {
     echo $emptyfields;
 }
-if(!empty($date_error))
-{
-    echo $date_error;
-}
 ?>
 <br />
 <br />
-<table width="100%" border="0" cellpadding="1" cellspacing="1">
-<tr>
-	<td> Research Title: </td>
-	<td> <input type="text" name="title"/> </td>
-</tr>
-<tr>
-	<td> Research Abstract: </td>
-	<td> <textarea type="text" rows="4" cols="50" name="abstract"> </textarea> </td>
-</tr>
-<tr>
-	<td> <label for="file">Research Proposal:</label> </td>
-	<td> <input type="hidden" name="MAX_FILE_SIZE" value="2000000"/>
-	<input type="file" name="file" id="file" />  </td>
-</tr>
-<tr>
-	<td> Funding Required:</td>
-	<td> Php<input type="integer" name="funding"/> </td>
-</tr>
-<tr>	 
-	<td> Proposed Start Date: </td> 
-	<td> <input type="date" id="startdate" name="startdate" size="10" /></td>	
-</tr>		 
-<tr> 
-	<td> Proposed End Date: </td>
-	<td> <input type="date" id="enddate" name="enddate" size="10" /> </td>
-</tr>
-<tr>
-	<td colspan="2"> <input type="submit" value="Submit a Proposal" /> </td>
-</tr>
+Research Title: <input type="text" name="title"/>
+<br />
+<br />
+Research Abstract: 
+<textarea type="text" rows="4" cols="50" name="abstract">
+</textarea>
+<br />
+<br />
+<label for="file">Research Proposal:</label>
+<input type="hidden" name="MAX_FILE_SIZE" value="2000000"/>
+<input type="file" name="file" id="file" /> 
+<br />
+<br />
+Funding Required: Php<input type="integer" name="funding"/>
+<br />
+<br />
+    <meta charset="utf-8" />
+    <title>jQuery UI Datepicker - Format date</title>
+    <link rel="stylesheet" href="http://code.jquery.com/ui/1.9.0/themes/base/jquery-ui.css" />
+    <script src="http://code.jquery.com/jquery-1.8.2.js"></script>
+    <script src="http://code.jquery.com/ui/1.9.0/jquery-ui.js"></script>
+    <link rel="stylesheet" href="/resources/demos/style.css" />
+    <script>
+    $(function() {
+        $( "#startdate" ).datepicker();
+	$( "#startdate" ).datepicker( "option", "dateFormat", "yy-mm-dd" );
+    });
+    </script>
+    <style>
+	.ui-datepicker
+	{
+		font-size:62.5%;
+	}
+
+    </style>
+</head>
+<body>
+ 
+<p>Proposed Start Date: <input type="date" id="startdate" name="startdate" size="10" /></p>
+<br />
+    <meta charset="utf-8" />
+    <title>jQuery UI Datepicker - Format date</title>
+    <link rel="stylesheet" href="http://code.jquery.com/ui/1.9.0/themes/base/jquery-ui.css" />
+    <script src="http://code.jquery.com/jquery-1.8.2.js"></script>
+    <script src="http://code.jquery.com/ui/1.9.0/jquery-ui.js"></script>
+    <link rel="stylesheet" href="/resources/demos/style.css" />
+    <script>
+    $(function() {
+        $( "#enddate" ).datepicker();
+	$( "#enddate" ).datepicker( "option", "dateFormat", "yy-mm-dd" );
+    });
+    </script>
+    <style>
+	.ui-datepicker
+	{
+		font-size:62.5%;
+	}
+
+    </style>
+</head>
+<body>
+ 
+<p>Proposed End Date: <input type="date" id="enddate" name="enddate" size="10" /></p>
+<br/ >
+<input type="submit" value="Submit a Proposal" />
 </form>
-</table>

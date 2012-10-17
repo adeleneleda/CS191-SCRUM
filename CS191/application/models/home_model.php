@@ -12,7 +12,8 @@ class Home_Model extends CI_Model {
 		
 		if($results->num_rows() > 0)
 		{
-			return true;
+			$temp = $results->result_array();
+			return $temp[0];
 		}
 		return false;
 	}
@@ -27,8 +28,18 @@ class Home_Model extends CI_Model {
 		return "Invalid UP Webmail account.";
 	}
 	
+	function get_userroles($userid) {
+		$results = $this->db->query('SELECT usertype FROM user_roles WHERE user_id='.$userid.';');
+		if($results->num_rows() > 0)
+		{
+			$temp = $results->result_array();
+			return $temp;
+		}
+		return false;
+	}
+	
 	function get_approved_proposal_titles() {
-		$results = $this->db->query('SELECT proposal_id, title, date(status_date) as status_date FROM proposals WHERE status = "APPROVED";');
+		$results = $this->db->query('SELECT proposal_id, title, date(status_date) as status_date, abstract  FROM proposals WHERE status = "APPROVED";');
 		$results = $results->result_array();
 		return $results;
 	}

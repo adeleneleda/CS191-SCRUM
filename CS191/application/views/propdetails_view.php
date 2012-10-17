@@ -53,6 +53,8 @@
 			<div class="cleared reset-box"></div>
 			<div class="art-box art-sheet">
 				<div class="art-box-body art-sheet-body">
+					<div class="art-bar art-nav"></div>
+
 						<div class="art-header">
 							<div>
 								<table width="100%">
@@ -89,7 +91,7 @@
 								</table>
 							</div>		
 						</div>
-						<div class="art-bar art-nav"></div>
+
 						<div class="cleared reset-box"></div>
 						<div class="art-layout-wrapper">
 							<div class="art-content-layout">

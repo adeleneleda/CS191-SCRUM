@@ -7,8 +7,38 @@
 											<div class="art-layout-cell art-sidebar1">
 												<div class="art-box art-block">
 													<div class="art-box-body art-block-body">
-														<div class="art-bar art-blockheader">
-															<h3 class="t" style="color:white;">You are logged in as Proponent</h3>
+														<div class="art-bar art-blockheader" align="center">
+															<script type="text/javascript">
+															$(document).ready(function() {
+																$("#userrole").click(function(){
+																	<?
+																	$userroles = $this->session->userdata('userroles');
+																	 
+																	if(count($userroles) > 1){
+																	?>
+																	$(this).hide();
+																	$("#roleselect").show();
+																	<?}?>
+																});
+																
+																$("#roleselect").change(function(){
+																	window.location.replace("<?=base_url()?>userhome/changerole/" + $(this).val());
+																});
+															});
+															</script>
+															<h3 class="t" style="color:white;">You are logged in as 
+															<select id="roleselect" style="display:none; font-family:arial; width:100px;">
+																<option <?if($this->session->userdata('activerole') == 'P') echo 'selected="selected"';?>value="P" >Proponent</option>
+																<option <?if($this->session->userdata('activerole') == 'R') echo 'selected="selected"';?>value="R">Reviewer</option>
+															</select>
+															<a href="#" id="userrole" style="text-decoration:underline; color:white">
+															<?if($this->session->userdata('activerole') == 'P'){?>
+																Proponent
+															<?}else if($this->session->userdata('activerole') == 'R'){?>
+																Reviewer
+															<?}?>
+															</a>
+															</h3>
 														</div>
 														<div class="cleared"></div>
 													</div>

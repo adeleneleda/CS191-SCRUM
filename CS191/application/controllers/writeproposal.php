@@ -12,11 +12,12 @@ class WriteProposal extends CI_Controller {
     {
         $ctr = 0;
         $newlist = array();
+		$userdata = $this->session->userdata('proponent_list');
         while($ctr < count($this->session->userdata('proponent_list')))
         {
-            if($this->session->userdata('proponent_list')[$ctr] != $remove)
+            if($userdata[$ctr] != $remove)
             {
-                array_push($newlist, $this->session->userdata('proponent_list')[$ctr]);
+                array_push($newlist, $userdata[$ctr]);
             }
             $ctr++;
         }
@@ -30,12 +31,23 @@ class WriteProposal extends CI_Controller {
     {
         $temp_proponent_list = array();
         $proponent = $this->input->post('proponent');
-        $parray = array();
-        array_push($parray, $proponent);
+        $ctr = 0;
+        $valid = 0;
+        while($ctr < count($this->session->userdata('proponent_list')))
+        {
+            if($this->session->userdata('proponent_list')[$ctr] == $proponent)
+            {
+                $valid = 1;
+                break;
+            }
+            $ctr++;
+        }
+        if($valid == 0)
+        {
             $temp_proponent_list = $this->session->userdata('proponent_list');
             array_push($temp_proponent_list, $proponent);
             $this->session->set_userdata('proponent_list', $temp_proponent_list);
-            $the_list = $this->session->userdata('proponent_list');
+        }
         $the_list = $this->session->userdata('proponent_list');
         $this->load_view('writeproposal_view', compact('the_list'));
     }
@@ -70,6 +82,11 @@ class WriteProposal extends CI_Controller {
         {
             $this->load_view('writeproposal_view', compact('emptyfields', 'the_list'));
         }
+        else if($end <= $start)
+        {
+            $date_error = "End date Should be later than start date!";
+            $this->load_view('writeproposal_view', compact('date_error', 'the_list'));
+        }
         else
         {
             $this->Model->addtoproposal($title, $abstract, $proposal, $filename, $filesize, $filetype, $funding, $start, $end, $the_list);
@@ -83,7 +100,8 @@ class WriteProposal extends CI_Controller {
     }
     
 	public function index() {
-        $id = 'SELECT user_id FROM users WHERE username="' . $this->session->userdata('userdata')['login'].'" AND password="'.substr(md5($this->session->userdata('userdata')['password']),0,20).'";';
+		$userdata = $this->session->userdata('userdata');
+        $id = 'SELECT user_id FROM users WHERE username="' . $userdata['login'].'" AND password="'.substr(md5($userdata['password']),0,20).'";';
         $uid = mysql_query($id);
         $row = mysql_fetch_array($uid);
         $value = $row['user_id'];

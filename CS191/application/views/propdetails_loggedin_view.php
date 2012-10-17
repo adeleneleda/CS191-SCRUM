@@ -45,8 +45,12 @@ function backna() {
 		
 		
 		<br/>
+		<span class="art-posttagicon">Funding Requested: <?=$abstract_info[0]['fundingreq']?> | Start Date: <?=$abstract_info[0]['startdate']?> | End Date: <?=$abstract_info[0]['enddate']?> <br/> <br> </span>
 		
-		<a href="<?= base_url()?>userhome/download/<?=$proposal_id?>">Download file.</a>
+		
+		<font style="font-size:15px;"><a style='color: #365007; text-decoration : underline;' href="<?= base_url()?>userhome/download/<?=$proposal_id?>">Download Proposal File</a></font>
+
+		
 		<br/>
 		<br/>
 		<font face = "verdana" style="font-size:14px;">ABSTRACT:</font> <br/>		

@@ -38,20 +38,20 @@
 							<div class="art-nav-outer">
 								<ul class="art-hmenu">
 									<li>
-										<a href="<?base_url()?>userhome" class="active">Home</a>
+										<a href="<?=base_url()?>userhome" class="active">Home</a>
 									</li>
 									<li>
-										<a href="<?base_url()?>userhome/writeproposal">Write a Proposal</a>
+										<a href="#">Search Proposals</a>
 									</li>	
 									<li>
-										<a href="<?base_url()?>review">Submit Review</a>
+										<a href="#">View Archives</a>
 									</li>
 									<li>
-										<a href="">About</a>
+										<a href="#">About</a>
 									</li>	
-									<li				
-										<a href="<?base_url()?>userhome/logout">Logout</a>
-									</li>
+									<li>
+										<a href="<?=base_url()?>userhome/logout">Logout</a>
+									</li>	
 								</ul>
 							</div>
 						</div>

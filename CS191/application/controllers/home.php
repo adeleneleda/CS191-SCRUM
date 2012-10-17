@@ -25,8 +25,6 @@ class Home extends CI_Controller {
 				}
 		}
 		
-		
-		
 		if($this->session->userdata('userdata')){
 			redirect('userhome', 'refresh');
 		}
@@ -42,13 +40,39 @@ class Home extends CI_Controller {
 		else{
 			$userdata['login'] = $this->input->post('upwebmail');
 			$userdata['password'] = $this->input->post('password');
-			
-			if($this->Model->check_userdata($userdata)){
+			$userdetails = $this->Model->check_userdata($userdata);
+			if($userdetails){
+				$userroles = $this->Model->get_userroles($userdetails['user_id']);
+				foreach($userroles as $role){
+					$roles[] = $role['usertype'];
+				}
+				
+				$this->session->set_userdata('userid',$userdetails['user_id']);
 				$this->session->set_userdata('userdata',$userdata);
+				$this->session->set_userdata('userroles',$roles);
+				$this->session->set_userdata('activerole',$roles[0]);
 				redirect('userhome', 'refresh');
 			}else{
 				$error = $this->Model->get_loginerror($userdata);
-				$this->load->view('entrance_view',compact('error'));
+				
+				
+				$years = $this->Model->get_years();
+				$approved_titles = $this->Model->get_approved_proposal_titles();
+				$proposal = array();
+				foreach ($approved_titles as $index=>$approved) {
+		
+				$proposal[$index]['title'] = $approved['title'];
+				$proposal[$index]['status_date'] = $approved['status_date'];
+				$proposal[$index]['proposal_id'] = $approved['proposal_id'];
+				
+				$authors = $this->Model->get_authors($approved['proposal_id']);
+				
+					foreach ($authors as $auth_index=>$indiv) {
+						$proposal[$index]['author'][$auth_index] = $indiv['lastname'].", ".$indiv['firstname']." ".$indiv['middlename'];
+				}
+		}
+				
+				$this->load->view('entrance_view',compact('error', 'proposal', 'years'));
 			}
 		}
 	}
